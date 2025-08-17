@@ -1,0 +1,152 @@
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { supabase } from "@/lib/supabase";
+import { useToast } from "@/hooks/use-toast";
+import { Edit2, Trash2, TrendingUp, TrendingDown } from "lucide-react";
+import { format } from "date-fns";
+
+interface Transaction {
+  id: string;
+  description: string;
+  amount: number;
+  type: "income" | "expense";
+  category: string;
+  created_at: string;
+}
+
+interface TransactionsListProps {
+  transactions: Transaction[];
+  onTransactionUpdated: () => void;
+}
+
+export const TransactionsList = ({ transactions, onTransactionUpdated }: TransactionsListProps) => {
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  const handleDelete = async (id: string) => {
+    setDeletingId(id);
+    try {
+      const { error } = await supabase
+        .from("transactions")
+        .delete()
+        .eq("id", id);
+
+      if (error) throw error;
+
+      toast({
+        title: "Success",
+        description: "Transaction deleted successfully",
+      });
+      onTransactionUpdated();
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
+  if (transactions.length === 0) {
+    return (
+      <Card>
+        <CardContent className="flex flex-col items-center justify-center py-8">
+          <p className="text-muted-foreground mb-4">No transactions yet</p>
+          <p className="text-sm text-muted-foreground">
+            Add your first transaction to start tracking your expenses
+          </p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Recent Transactions</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-3">
+          {transactions.map((transaction) => (
+            <div
+              key={transaction.id}
+              className="flex items-center justify-between p-3 rounded-lg border bg-card"
+            >
+              <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-full ${
+                  transaction.type === "income" 
+                    ? "bg-income-bg text-income-text" 
+                    : "bg-expense-bg text-expense-text"
+                }`}>
+                  {transaction.type === "income" ? (
+                    <TrendingUp className="h-4 w-4" />
+                  ) : (
+                    <TrendingDown className="h-4 w-4" />
+                  )}
+                </div>
+                <div>
+                  <p className="font-medium">{transaction.description}</p>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span>{format(new Date(transaction.created_at), "MMM dd, yyyy")}</span>
+                    <Badge variant="outline" className="text-xs">
+                      {transaction.category}
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <span className={`font-semibold ${
+                  transaction.type === "income" ? "text-success" : "text-destructive"
+                }`}>
+                  {transaction.type === "income" ? "+" : "-"}${transaction.amount.toFixed(2)}
+                </span>
+                
+                <div className="flex gap-1">
+                  <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
+                    <Edit2 className="h-3 w-3" />
+                  </Button>
+                  
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button 
+                        size="sm" 
+                        variant="ghost" 
+                        className="h-8 w-8 p-0 text-destructive hover:text-destructive"
+                        disabled={deletingId === transaction.id}
+                      >
+                        <Trash2 className="h-3 w-3" />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Delete Transaction</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Are you sure you want to delete this transaction? This action cannot be undone.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={() => handleDelete(transaction.id)}
+                          className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                        >
+                          Delete
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};

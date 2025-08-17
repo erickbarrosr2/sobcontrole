@@ -18,6 +18,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				mono: ['Geist Mono', 'monospace'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -36,6 +39,10 @@ export default {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))'
+				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
@@ -51,6 +58,19 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				expense: {
+					bg: 'hsl(var(--expense-bg))',
+					text: 'hsl(var(--expense-text))'
+				},
+				income: {
+					bg: 'hsl(var(--income-bg))',
+					text: 'hsl(var(--income-text))'
+				},
+				budget: {
+					needs: 'hsl(var(--budget-needs))',
+					wants: 'hsl(var(--budget-wants))',
+					savings: 'hsl(var(--budget-savings))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
