@@ -4,9 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { TrendingUp, Shield, PieChart } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { LanguageToggle } from "@/components/LanguageToggle";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Check if user is already logged in
@@ -23,13 +26,14 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-primary">ExpenseManager</h1>
-          <div className="flex gap-2">
+          <h1 className="text-2xl font-bold text-primary">{t('app.title')}</h1>
+          <div className="flex gap-2 items-center">
+            <LanguageToggle />
             <Button variant="outline" onClick={() => navigate("/login")}>
-              Sign In
+              {t('auth.signIn')}
             </Button>
             <Button onClick={() => navigate("/register")}>
-              Get Started
+              {t('landing.getStarted')}
             </Button>
           </div>
         </div>
@@ -38,17 +42,16 @@ const Index = () => {
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
-            Simple Expense Tracking
+            {t('landing.title')}
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Take control of your finances with our minimalist expense manager. 
-            Track your spending, follow the 50/30/20 rule, and achieve your financial goals.
+            {t('landing.subtitle')}
           </p>
           <Button size="lg" onClick={() => navigate("/register")} className="mr-4">
-            Start Tracking
+            {t('landing.startTracking')}
           </Button>
           <Button size="lg" variant="outline" onClick={() => navigate("/login")}>
-            Sign In
+            {t('auth.signIn')}
           </Button>
         </div>
 
@@ -56,11 +59,11 @@ const Index = () => {
           <Card className="text-center">
             <CardHeader>
               <TrendingUp className="h-12 w-12 mx-auto text-primary mb-4" />
-              <CardTitle>Track Everything</CardTitle>
+              <CardTitle>{t('landing.features.trackEverything.title')}</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Easily add and categorize your income and expenses with our simple interface.
+                {t('landing.features.trackEverything.description')}
               </CardDescription>
             </CardContent>
           </Card>
@@ -68,11 +71,11 @@ const Index = () => {
           <Card className="text-center">
             <CardHeader>
               <PieChart className="h-12 w-12 mx-auto text-primary mb-4" />
-              <CardTitle>50/30/20 Rule</CardTitle>
+              <CardTitle>{t('landing.features.budgetRule.title')}</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Follow the proven budgeting strategy: 50% needs, 30% wants, 20% savings.
+                {t('landing.features.budgetRule.description')}
               </CardDescription>
             </CardContent>
           </Card>
@@ -80,23 +83,23 @@ const Index = () => {
           <Card className="text-center">
             <CardHeader>
               <Shield className="h-12 w-12 mx-auto text-primary mb-4" />
-              <CardTitle>Secure & Private</CardTitle>
+              <CardTitle>{t('landing.features.securePrivate.title')}</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Your financial data is encrypted and secure. Only you have access to your information.
+                {t('landing.features.securePrivate.description')}
               </CardDescription>
             </CardContent>
           </Card>
         </div>
 
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to take control?</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('landing.readyToTakeControl')}</h2>
           <p className="text-muted-foreground mb-6">
-            Join thousands of users who have simplified their financial tracking.
+            {t('landing.joinThousands')}
           </p>
           <Button size="lg" onClick={() => navigate("/register")}>
-            Create Your Account
+            {t('landing.createAccount')}
           </Button>
         </div>
       </main>

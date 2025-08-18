@@ -63,5 +63,28 @@
   "language": {
     "english": "English",
     "portuguese": "Português"
+  },
+  "landing": {
+    "title": "Simple Expense Tracking",
+    "subtitle": "Take control of your finances with our minimalist expense manager. Track your spending, follow the 50/30/20 rule, and achieve your financial goals.",
+    "startTracking": "Start Tracking",
+    "getStarted": "Get Started",
+    "features": {
+      "trackEverything": {
+        "title": "Track Everything",
+        "description": "Easily add and categorize your income and expenses with our simple interface."
+      },
+      "budgetRule": {
+        "title": "50/30/20 Rule",
+        "description": "Follow the proven budgeting strategy: 50% needs, 30% wants, 20% savings."
+      },
+      "securePrivate": {
+        "title": "Secure & Private",
+        "description": "Your financial data is encrypted and secure. Only you have access to your information."
+      }
+    },
+    "readyToTakeControl": "Ready to take control?",
+    "joinThousands": "Join thousands of users who have simplified their financial tracking.",
+    "createAccount": "Create Your Account"
   }
 }

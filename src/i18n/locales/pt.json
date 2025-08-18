@@ -63,5 +63,28 @@
   "language": {
     "english": "English",
     "portuguese": "Português"
+  },
+  "landing": {
+    "title": "Controle Simples de Despesas",
+    "subtitle": "Assuma o controle das suas finanças com nosso gerenciador minimalista de despesas. Acompanhe seus gastos, siga a regra 50/30/20 e alcance seus objetivos financeiros.",
+    "startTracking": "Começar a Rastrear",
+    "getStarted": "Começar",
+    "features": {
+      "trackEverything": {
+        "title": "Rastreie Tudo",
+        "description": "Adicione e categorize facilmente suas receitas e despesas com nossa interface simples."
+      },
+      "budgetRule": {
+        "title": "Regra 50/30/20",
+        "description": "Siga a estratégia comprovada de orçamento: 50% necessidades, 30% desejos, 20% poupança."
+      },
+      "securePrivate": {
+        "title": "Seguro e Privado",
+        "description": "Seus dados financeiros são criptografados e seguros. Apenas você tem acesso às suas informações."
+      }
+    },
+    "readyToTakeControl": "Pronto para assumir o controle?",
+    "joinThousands": "Junte-se a milhares de usuários que simplificaram o acompanhamento de suas finanças.",
+    "createAccount": "Criar Sua Conta"
   }
 }
