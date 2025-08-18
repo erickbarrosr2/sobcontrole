@@ -1,0 +1,67 @@
+{
+  "app": {
+    "title": "SimpleCents"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "signInHere": "Sign in here",
+    "signUpHere": "Sign up here"
+  },
+  "dashboard": {
+    "loading": "Loading...",
+    "settings": "Settings",
+    "signOut": "Sign Out",
+    "monthlyIncome": "Monthly Income",
+    "update": "Update",
+    "close": "Close",
+    "budgetOverview": "Budget Overview",
+    "addTransaction": "Add Transaction",
+    "recentTransactions": "Recent Transactions",
+    "noTransactions": "No transactions yet",
+    "startAdding": "Start adding your income and expenses to track your budget."
+  },
+  "transaction": {
+    "description": "Description",
+    "amount": "Amount",
+    "type": "Type",
+    "category": "Category",
+    "income": "Income",
+    "expense": "Expense",
+    "cancel": "Cancel",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteConfirm": "Are you sure you want to delete this transaction?",
+    "deleteDescription": "This action cannot be undone.",
+    "categories": {
+      "food": "Food",
+      "transport": "Transport", 
+      "entertainment": "Entertainment",
+      "shopping": "Shopping",
+      "bills": "Bills",
+      "healthcare": "Healthcare",
+      "education": "Education",
+      "travel": "Travel",
+      "savings": "Savings",
+      "other": "Other"
+    }
+  },
+  "budget": {
+    "income": "Income",
+    "expenses": "Expenses",
+    "needs": "Needs",
+    "wants": "Wants", 
+    "savings": "Savings",
+    "remaining": "Remaining"
+  },
+  "language": {
+    "english": "English",
+    "portuguese": "Português"
+  }
+}

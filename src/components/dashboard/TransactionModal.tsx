@@ -8,20 +8,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Plus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface TransactionModalProps {
   onTransactionAdded: () => void;
 }
 
 const CATEGORIES = [
-  "housing",
   "food",
-  "transportation",
-  "utilities",
-  "healthcare",
-  "entertainment",
+  "transport",
+  "entertainment", 
   "shopping",
+  "bills",
+  "healthcare",
   "education",
+  "travel",
   "savings",
   "other"
 ];
@@ -34,6 +35,7 @@ export const TransactionModal = ({ onTransactionAdded }: TransactionModalProps) 
   const [category, setCategory] = useState("other");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,28 +85,28 @@ export const TransactionModal = ({ onTransactionAdded }: TransactionModalProps) 
       <DialogTrigger asChild>
         <Button className="mb-4">
           <Plus className="mr-2 h-4 w-4" />
-          Add Transaction
+          {t('dashboard.addTransaction')}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Add New Transaction</DialogTitle>
+          <DialogTitle>{t('dashboard.addTransaction')}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">{t('transaction.description')}</Label>
             <Textarea
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
-              placeholder="e.g. Grocery shopping, Salary, etc."
+              placeholder={t('transaction.description')}
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="amount">Amount</Label>
+              <Label htmlFor="amount">{t('transaction.amount')}</Label>
               <Input
                 id="amount"
                 type="number"
@@ -118,21 +120,21 @@ export const TransactionModal = ({ onTransactionAdded }: TransactionModalProps) 
             </div>
 
             <div className="space-y-2">
-              <Label>Type</Label>
+              <Label>{t('transaction.type')}</Label>
               <Select value={type} onValueChange={(value: "income" | "expense") => setType(value)}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="income">Income</SelectItem>
-                  <SelectItem value="expense">Expense</SelectItem>
+                  <SelectItem value="income">{t('transaction.income')}</SelectItem>
+                  <SelectItem value="expense">{t('transaction.expense')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label>Category</Label>
+            <Label>{t('transaction.category')}</Label>
             <Select value={category} onValueChange={setCategory}>
               <SelectTrigger>
                 <SelectValue />
@@ -140,7 +142,7 @@ export const TransactionModal = ({ onTransactionAdded }: TransactionModalProps) 
               <SelectContent>
                 {CATEGORIES.map((cat) => (
                   <SelectItem key={cat} value={cat}>
-                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                    {t(`transaction.categories.${cat}`)}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -149,10 +151,10 @@ export const TransactionModal = ({ onTransactionAdded }: TransactionModalProps) 
 
           <div className="flex justify-end gap-2">
             <Button type="button" variant="outline" onClick={() => setOpen(false)}>
-              Cancel
+              {t('transaction.cancel')}
             </Button>
             <Button type="submit" disabled={loading}>
-              {loading ? "Adding..." : "Add Transaction"}
+              {loading ? `${t('transaction.add')}...` : t('transaction.add')}
             </Button>
           </div>
         </form>

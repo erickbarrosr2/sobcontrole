@@ -8,9 +8,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { BudgetOverview } from "@/components/dashboard/BudgetOverview";
 import { TransactionModal } from "@/components/dashboard/TransactionModal";
 import { TransactionsList } from "@/components/dashboard/TransactionsList";
+import { LanguageToggle } from "@/components/LanguageToggle";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { LogOut, Settings } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Transaction {
   id: string;
@@ -34,6 +36,7 @@ const Dashboard = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     checkUser();
@@ -75,7 +78,7 @@ const Dashboard = () => {
         .order("created_at", { ascending: false });
 
       if (transactionsData) {
-        setTransactions(transactionsData);
+        setTransactions(transactionsData as Transaction[]);
       }
     } catch (error: any) {
       toast({
@@ -154,7 +157,7 @@ const Dashboard = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-pulse text-lg">Loading...</div>
+          <div className="animate-pulse text-lg">{t('dashboard.loading')}</div>
         </div>
       </div>
     );
@@ -164,37 +167,38 @@ const Dashboard = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">ExpenseManager</h1>
+          <h1 className="text-2xl font-bold">{t('app.title')}</h1>
           <div className="flex items-center gap-2">
+            <LanguageToggle />
             <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
               <DialogTrigger asChild>
                 <Button variant="outline" size="sm">
                   <Settings className="mr-2 h-4 w-4" />
-                  Settings
+                  {t('dashboard.settings')}
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Account Settings</DialogTitle>
+                  <DialogTitle>{t('dashboard.settings')}</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="income">Monthly Income</Label>
+                    <Label htmlFor="income">{t('dashboard.monthlyIncome')}</Label>
                     <Input
                       id="income"
                       type="number"
                       step="0.01"
                       value={monthlyIncome}
                       onChange={(e) => setMonthlyIncome(e.target.value)}
-                      placeholder="Enter your monthly income"
+                      placeholder={t('dashboard.monthlyIncome')}
                     />
                   </div>
                   <div className="flex justify-end gap-2">
                     <Button variant="outline" onClick={() => setSettingsOpen(false)}>
-                      Cancel
+                      {t('dashboard.close')}
                     </Button>
                     <Button onClick={updateMonthlyIncome}>
-                      Save
+                      {t('dashboard.update')}
                     </Button>
                   </div>
                 </div>
@@ -202,7 +206,7 @@ const Dashboard = () => {
             </Dialog>
             <Button variant="outline" size="sm" onClick={handleSignOut}>
               <LogOut className="mr-2 h-4 w-4" />
-              Sign Out
+              {t('dashboard.signOut')}
             </Button>
           </div>
         </div>

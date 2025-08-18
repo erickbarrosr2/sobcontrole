@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { useTranslation } from "react-i18next";
 
 interface BudgetOverviewProps {
   monthlyIncome: number;
@@ -16,6 +17,7 @@ export const BudgetOverview = ({
   wantsExpenses,
   savingsAmount,
 }: BudgetOverviewProps) => {
+  const { t } = useTranslation();
   const balance = monthlyIncome - totalExpenses;
   const isPositive = balance >= 0;
 
@@ -33,7 +35,7 @@ export const BudgetOverview = ({
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground">
-            Monthly Income
+            {t('budget.income')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -46,7 +48,7 @@ export const BudgetOverview = ({
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground">
-            Current Balance
+            {t('budget.remaining')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -59,7 +61,7 @@ export const BudgetOverview = ({
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground">
-            Total Expenses
+            {t('budget.expenses')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -72,7 +74,7 @@ export const BudgetOverview = ({
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground">
-            Savings This Month
+            {t('budget.savings')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -91,7 +93,7 @@ export const BudgetOverview = ({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span>Needs (50%)</span>
+                <span>{t('budget.needs')} (50%)</span>
                 <span>${needsExpenses.toFixed(2)} / ${needsLimit.toFixed(2)}</span>
               </div>
               <Progress 
@@ -108,7 +110,7 @@ export const BudgetOverview = ({
 
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span>Wants (30%)</span>
+                <span>{t('budget.wants')} (30%)</span>
                 <span>${wantsExpenses.toFixed(2)} / ${wantsLimit.toFixed(2)}</span>
               </div>
               <Progress 
@@ -125,7 +127,7 @@ export const BudgetOverview = ({
 
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span>Savings (20%)</span>
+                <span>{t('budget.savings')} (20%)</span>
                 <span>${savingsAmount.toFixed(2)} / ${savingsGoal.toFixed(2)}</span>
               </div>
               <Progress 

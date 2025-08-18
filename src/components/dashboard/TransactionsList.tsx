@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Edit2, Trash2, TrendingUp, TrendingDown } from "lucide-react";
 import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 interface Transaction {
   id: string;
@@ -25,6 +26,7 @@ interface TransactionsListProps {
 export const TransactionsList = ({ transactions, onTransactionUpdated }: TransactionsListProps) => {
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const handleDelete = async (id: string) => {
     setDeletingId(id);
@@ -56,9 +58,9 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
     return (
       <Card>
         <CardContent className="flex flex-col items-center justify-center py-8">
-          <p className="text-muted-foreground mb-4">No transactions yet</p>
+          <p className="text-muted-foreground mb-4">{t('dashboard.noTransactions')}</p>
           <p className="text-sm text-muted-foreground">
-            Add your first transaction to start tracking your expenses
+            {t('dashboard.startAdding')}
           </p>
         </CardContent>
       </Card>
@@ -68,7 +70,7 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Recent Transactions</CardTitle>
+        <CardTitle>{t('dashboard.recentTransactions')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
@@ -94,7 +96,7 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <span>{format(new Date(transaction.created_at), "MMM dd, yyyy")}</span>
                     <Badge variant="outline" className="text-xs">
-                      {transaction.category}
+                      {t(`transaction.categories.${transaction.category}`)}
                     </Badge>
                   </div>
                 </div>
@@ -125,18 +127,18 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
-                        <AlertDialogTitle>Delete Transaction</AlertDialogTitle>
+                        <AlertDialogTitle>{t('transaction.delete')}</AlertDialogTitle>
                         <AlertDialogDescription>
-                          Are you sure you want to delete this transaction? This action cannot be undone.
+                          {t('transaction.deleteConfirm')} {t('transaction.deleteDescription')}
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogCancel>{t('transaction.cancel')}</AlertDialogCancel>
                         <AlertDialogAction
                           onClick={() => handleDelete(transaction.id)}
                           className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                         >
-                          Delete
+                          {t('transaction.delete')}
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>

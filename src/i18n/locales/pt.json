@@ -1,0 +1,67 @@
+{
+  "app": {
+    "title": "SimpleCents"
+  },
+  "auth": {
+    "signIn": "Entrar",
+    "signUp": "Cadastrar",
+    "email": "E-mail",
+    "password": "Senha",
+    "confirmPassword": "Confirmar Senha",
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "dontHaveAccount": "Não tem uma conta?",
+    "signInHere": "Entre aqui",
+    "signUpHere": "Cadastre-se aqui"
+  },
+  "dashboard": {
+    "loading": "Carregando...",
+    "settings": "Configurações",
+    "signOut": "Sair",
+    "monthlyIncome": "Renda Mensal",
+    "update": "Atualizar",
+    "close": "Fechar",
+    "budgetOverview": "Visão Geral do Orçamento",
+    "addTransaction": "Adicionar Transação",
+    "recentTransactions": "Transações Recentes",
+    "noTransactions": "Nenhuma transação ainda",
+    "startAdding": "Comece adicionando suas receitas e despesas para acompanhar seu orçamento."
+  },
+  "transaction": {
+    "description": "Descrição",
+    "amount": "Valor",
+    "type": "Tipo",
+    "category": "Categoria",
+    "income": "Receita",
+    "expense": "Despesa",
+    "cancel": "Cancelar",
+    "add": "Adicionar",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "deleteConfirm": "Tem certeza de que deseja excluir esta transação?",
+    "deleteDescription": "Esta ação não pode ser desfeita.",
+    "categories": {
+      "food": "Alimentação",
+      "transport": "Transporte",
+      "entertainment": "Entretenimento",
+      "shopping": "Compras",
+      "bills": "Contas",
+      "healthcare": "Saúde",
+      "education": "Educação",
+      "travel": "Viagem",
+      "savings": "Poupança",
+      "other": "Outros"
+    }
+  },
+  "budget": {
+    "income": "Receita",
+    "expenses": "Despesas",
+    "needs": "Necessidades",
+    "wants": "Desejos",
+    "savings": "Poupança",
+    "remaining": "Restante"
+  },
+  "language": {
+    "english": "English",
+    "portuguese": "Português"
+  }
+}

@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { LanguageToggle } from "@/components/LanguageToggle";
 
 interface AuthFormProps {
   mode: "login" | "register";
@@ -18,6 +20,7 @@ export const AuthForm = ({ mode }: AuthFormProps) => {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,22 +58,25 @@ export const AuthForm = ({ mode }: AuthFormProps) => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <div className="absolute top-4 right-4">
+        <LanguageToggle />
+      </div>
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">
-            {mode === "login" ? "Welcome Back" : "Create Account"}
+            {mode === "login" ? t('auth.signIn') : t('auth.signUp')}
           </CardTitle>
           <CardDescription>
             {mode === "login" 
-              ? "Sign in to your expense manager"
-              : "Start tracking your expenses today"
+              ? t('app.title')
+              : t('app.title')
             }
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('auth.email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -81,7 +87,7 @@ export const AuthForm = ({ mode }: AuthFormProps) => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t('auth.password')}</Label>
               <Input
                 id="password"
                 type="password"
@@ -94,22 +100,22 @@ export const AuthForm = ({ mode }: AuthFormProps) => {
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {mode === "login" ? "Sign In" : "Create Account"}
+              {mode === "login" ? t('auth.signIn') : t('auth.signUp')}
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">
             {mode === "login" ? (
               <>
-                Don't have an account?{" "}
+                {t('auth.dontHaveAccount')}{" "}
                 <Button variant="link" className="p-0 h-auto" onClick={() => navigate("/register")}>
-                  Sign up
+                  {t('auth.signUpHere')}
                 </Button>
               </>
             ) : (
               <>
-                Already have an account?{" "}
+                {t('auth.alreadyHaveAccount')}{" "}
                 <Button variant="link" className="p-0 h-auto" onClick={() => navigate("/login")}>
-                  Sign in
+                  {t('auth.signInHere')}
                 </Button>
               </>
             )}
