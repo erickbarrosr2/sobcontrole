@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { BudgetOverview } from "@/components/dashboard/BudgetOverview";
 import { TransactionModal } from "@/components/dashboard/TransactionModal";
 import { TransactionsList } from "@/components/dashboard/TransactionsList";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { LogOut, Settings } from "lucide-react";
 
