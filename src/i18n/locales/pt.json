@@ -2,6 +2,11 @@
   "app": {
     "title": "SimpleCents"
   },
+  "theme": {
+    "toggle": "Alternar tema",
+    "light": "Tema claro",
+    "dark": "Tema escuro"
+  },
   "auth": {
     "signIn": "Entrar",
     "signUp": "Cadastrar",

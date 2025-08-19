@@ -2,6 +2,11 @@
   "app": {
     "title": "SimpleCents"
   },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light theme",
+    "dark": "Dark theme"
+  },
   "auth": {
     "signIn": "Sign In",
     "signUp": "Sign Up",

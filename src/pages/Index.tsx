@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { TrendingUp, Shield, PieChart } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-primary">{t('app.title')}</h1>
           <div className="flex gap-2 items-center">
+            <ThemeToggle />
             <LanguageToggle />
             <Button variant="outline" onClick={() => navigate("/login")}>
               {t('auth.signIn')}
