@@ -63,7 +63,8 @@
     "needs": "Necessidades",
     "wants": "Desejos",
     "savings": "Poupança",
-    "remaining": "Restante"
+    "remaining": "Restante",
+    "budgetRule": "Regra Orçamentária"
   },
   "language": {
     "english": "English",

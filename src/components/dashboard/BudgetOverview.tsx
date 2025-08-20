@@ -87,7 +87,7 @@ export const BudgetOverview = ({
       {/* 50/30/20 Budget Rule */}
       <Card className="md:col-span-2 lg:col-span-4">
         <CardHeader>
-          <CardTitle className="text-lg">50/30/20 Budget Rule</CardTitle>
+          <CardTitle className="text-lg">50/30/20 {t('budget.budgetRule')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

@@ -63,7 +63,8 @@
     "needs": "Needs",
     "wants": "Wants", 
     "savings": "Savings",
-    "remaining": "Remaining"
+    "remaining": "Remaining",
+    "budgetRule": "Budget Rule"
   },
   "language": {
     "english": "English",
