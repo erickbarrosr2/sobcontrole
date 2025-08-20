@@ -9,6 +9,7 @@ import { BudgetOverview } from "@/components/dashboard/BudgetOverview";
 import { TransactionModal } from "@/components/dashboard/TransactionModal";
 import { TransactionsList } from "@/components/dashboard/TransactionsList";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { LogOut, Settings } from "lucide-react";
@@ -169,6 +170,7 @@ const Dashboard = () => {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">{t('app.title')}</h1>
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <LanguageToggle />
             <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
               <DialogTrigger asChild>
