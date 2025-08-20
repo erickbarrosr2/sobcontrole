@@ -83,7 +83,7 @@ const Dashboard = () => {
       }
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('toast.error'),
         description: error.message,
         variant: "destructive",
       });
@@ -106,12 +106,12 @@ const Dashboard = () => {
       setProfile({ monthly_income: parseFloat(monthlyIncome) });
       setSettingsOpen(false);
       toast({
-        title: "Success",
-        description: "Monthly income updated successfully",
+        title: t('toast.success'),
+        description: t('toast.monthlyIncomeUpdated'),
       });
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('toast.error'),
         description: error.message,
         variant: "destructive",
       });

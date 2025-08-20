@@ -34,8 +34,8 @@ export const AuthForm = ({ mode }: AuthFormProps) => {
         });
         if (error) throw error;
         toast({
-          title: "Registration successful",
-          description: "Please check your email for verification.",
+          title: t('toast.registrationSuccessful'),
+          description: t('toast.checkEmailVerification'),
         });
       } else {
         const { error } = await supabase.auth.signInWithPassword({
@@ -47,7 +47,7 @@ export const AuthForm = ({ mode }: AuthFormProps) => {
       }
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('toast.error'),
         description: error.message,
         variant: "destructive",
       });

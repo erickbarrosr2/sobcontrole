@@ -39,13 +39,13 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
       if (error) throw error;
 
       toast({
-        title: "Success",
-        description: "Transaction deleted successfully",
+        title: t('toast.success'),
+        description: t('toast.transactionDeleted'),
       });
       onTransactionUpdated();
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('toast.error'),
         description: error.message,
         variant: "destructive",
       });

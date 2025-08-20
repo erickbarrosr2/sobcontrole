@@ -58,8 +58,8 @@ export const TransactionModal = ({ onTransactionAdded }: TransactionModalProps) 
       if (error) throw error;
 
       toast({
-        title: "Success",
-        description: "Transaction added successfully",
+        title: t('toast.success'),
+        description: t('toast.transactionAdded'),
       });
 
       // Reset form
@@ -71,7 +71,7 @@ export const TransactionModal = ({ onTransactionAdded }: TransactionModalProps) 
       onTransactionAdded();
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('toast.error'),
         description: error.message,
         variant: "destructive",
       });

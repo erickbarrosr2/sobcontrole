@@ -66,6 +66,15 @@
     "remaining": "Remaining",
     "budgetRule": "Budget Rule"
   },
+  "toast": {
+    "success": "Success",
+    "error": "Error",
+    "registrationSuccessful": "Registration successful",
+    "checkEmailVerification": "Please check your email for verification.",
+    "transactionAdded": "Transaction added successfully",
+    "transactionDeleted": "Transaction deleted successfully",
+    "monthlyIncomeUpdated": "Monthly income updated successfully"
+  },
   "language": {
     "english": "English",
     "portuguese": "Português"

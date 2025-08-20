@@ -66,6 +66,15 @@
     "remaining": "Restante",
     "budgetRule": "Regra Orçamentária"
   },
+  "toast": {
+    "success": "Sucesso",
+    "error": "Erro",
+    "registrationSuccessful": "Cadastro realizado com sucesso",
+    "checkEmailVerification": "Verifique seu e-mail para confirmação.",
+    "transactionAdded": "Transação adicionada com sucesso",
+    "transactionDeleted": "Transação excluída com sucesso",
+    "monthlyIncomeUpdated": "Renda mensal atualizada com sucesso"
+  },
   "language": {
     "english": "English",
     "portuguese": "Português"
