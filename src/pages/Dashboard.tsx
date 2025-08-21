@@ -226,7 +226,7 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
           <div>
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Transactions</h2>
+              <h2 className="text-xl font-semibold">{t('dashboard.recentTransactions')}</h2>
               <TransactionModal onTransactionAdded={fetchData} />
             </div>
             <TransactionsList 
