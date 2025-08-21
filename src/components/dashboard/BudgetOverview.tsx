@@ -23,8 +23,8 @@ export const BudgetOverview = ({
 
   // 50/30/20 rule calculations
   const needsLimit = monthlyIncome * 0.5;
-  const wantsLimit = monthlyIncome * 0.3;
-  const savingsGoal = monthlyIncome * 0.2;
+  const wantsLimit = monthlyIncome * 0.2;
+  const savingsGoal = monthlyIncome * 0.3;
 
   const needsPercentage = (needsExpenses / needsLimit) * 100;
   const wantsPercentage = (wantsExpenses / wantsLimit) * 100;
@@ -87,7 +87,7 @@ export const BudgetOverview = ({
       {/* 50/30/20 Budget Rule */}
       <Card className="md:col-span-2 lg:col-span-4">
         <CardHeader>
-          <CardTitle className="text-lg">50/30/20 {t('budget.budgetRule')}</CardTitle>
+          <CardTitle className="text-lg">50/20/30 {t('budget.budgetRule')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -110,7 +110,7 @@ export const BudgetOverview = ({
 
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span>{t('budget.wants')} (30%)</span>
+                <span>{t('budget.wants')} (20%)</span>
                 <span>${wantsExpenses.toFixed(2)} / ${wantsLimit.toFixed(2)}</span>
               </div>
               <Progress 
@@ -127,7 +127,7 @@ export const BudgetOverview = ({
 
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span>{t('budget.savings')} (20%)</span>
+                <span>{t('budget.savings')} (30%)</span>
                 <span>${savingsAmount.toFixed(2)} / ${savingsGoal.toFixed(2)}</span>
               </div>
               <Progress 
