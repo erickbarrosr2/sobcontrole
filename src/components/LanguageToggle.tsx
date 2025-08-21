@@ -25,10 +25,10 @@ export const LanguageToggle = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => changeLanguage('en')}>
-          English
+          🇺🇸 English
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => changeLanguage('pt')}>
-          Português
+          🇧🇷 Português
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
