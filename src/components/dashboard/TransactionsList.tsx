@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Edit2, Trash2, TrendingUp, TrendingDown } from "lucide-react";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
+import { EditTransactionModal } from "./EditTransactionModal";
 
 interface Transaction {
   id: string;
@@ -25,6 +26,8 @@ interface TransactionsListProps {
 
 export const TransactionsList = ({ transactions, onTransactionUpdated }: TransactionsListProps) => {
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const { toast } = useToast();
   const { t } = useTranslation();
 
@@ -110,7 +113,15 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
                 </span>
                 
                 <div className="flex gap-1">
-                  <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
+                  <Button 
+                    size="sm" 
+                    variant="ghost" 
+                    className="h-8 w-8 p-0"
+                    onClick={() => {
+                      setEditingTransaction(transaction);
+                      setEditModalOpen(true);
+                    }}
+                  >
                     <Edit2 className="h-3 w-3" />
                   </Button>
                   
@@ -149,6 +160,12 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
           ))}
         </div>
       </CardContent>
+      <EditTransactionModal
+        transaction={editingTransaction}
+        open={editModalOpen}
+        onOpenChange={setEditModalOpen}
+        onTransactionUpdated={onTransactionUpdated}
+      />
     </Card>
   );
 };

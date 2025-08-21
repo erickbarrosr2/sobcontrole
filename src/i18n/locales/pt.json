@@ -40,6 +40,7 @@
     "expense": "Despesa",
     "cancel": "Cancelar",
     "add": "Adicionar",
+    "update": "Atualizar",
     "edit": "Editar",
     "delete": "Excluir",
     "deleteConfirm": "Tem certeza de que deseja excluir esta transação?",
@@ -72,6 +73,7 @@
     "registrationSuccessful": "Cadastro realizado com sucesso",
     "checkEmailVerification": "Verifique seu e-mail para confirmação.",
     "transactionAdded": "Transação adicionada com sucesso",
+    "transactionUpdated": "Transação atualizada com sucesso",
     "transactionDeleted": "Transação excluída com sucesso",
     "monthlyIncomeUpdated": "Renda mensal atualizada com sucesso"
   },
