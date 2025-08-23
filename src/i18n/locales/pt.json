@@ -70,7 +70,9 @@
     "wants": "Desejos",
     "savings": "Investimentos",
     "remaining": "Restante",
-    "budgetRule": "Regra Orçamentária"
+    "budgetRule": "Regra Orçamentária",
+    "used": "usado",
+    "achieved": "alcançado"
   },
   "toast": {
     "success": "Sucesso",

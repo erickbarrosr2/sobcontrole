@@ -70,7 +70,9 @@
     "wants": "Wants", 
     "savings": "Investments",
     "remaining": "Remaining",
-    "budgetRule": "Budget Rule"
+    "budgetRule": "Budget Rule",
+    "used": "used",
+    "achieved": "achieved"
   },
   "toast": {
     "success": "Success",

@@ -104,7 +104,7 @@ export const BudgetOverview = ({
                 }}
               />
               <div className="text-xs text-muted-foreground mt-1">
-                {needsPercentage.toFixed(1)}% used
+                {needsPercentage.toFixed(1)}% {t('budget.used')}
               </div>
             </div>
 
@@ -121,7 +121,7 @@ export const BudgetOverview = ({
                 }}
               />
               <div className="text-xs text-muted-foreground mt-1">
-                {wantsPercentage.toFixed(1)}% used
+                {wantsPercentage.toFixed(1)}% {t('budget.used')}
               </div>
             </div>
 
@@ -138,7 +138,7 @@ export const BudgetOverview = ({
                 }}
               />
               <div className="text-xs text-muted-foreground mt-1">
-                {savingsPercentage.toFixed(1)}% achieved
+                {savingsPercentage.toFixed(1)}% {t('budget.achieved')}
               </div>
             </div>
           </div>
