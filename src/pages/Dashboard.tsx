@@ -36,6 +36,8 @@ const Dashboard = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
   const [monthlyIncome, setMonthlyIncome] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [settingsOpen, setSettingsOpen] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -71,6 +73,8 @@ const Dashboard = () => {
       if (profileData) {
         setProfile(profileData);
         setMonthlyIncome(profileData.monthly_income.toString());
+        setFirstName(profileData.first_name || "");
+        setLastName(profileData.last_name || "");
       }
 
       // Fetch transactions
@@ -94,22 +98,28 @@ const Dashboard = () => {
     }
   };
 
-  const updateMonthlyIncome = async () => {
+  const updateProfile = async () => {
     try {
       const { error } = await supabase
         .from("profiles")
         .upsert({
           id: user.id,
           monthly_income: parseFloat(monthlyIncome),
+          first_name: firstName,
+          last_name: lastName,
         });
 
       if (error) throw error;
 
-      setProfile({ monthly_income: parseFloat(monthlyIncome) });
+      setProfile({ 
+        monthly_income: parseFloat(monthlyIncome),
+        first_name: firstName,
+        last_name: lastName,
+      });
       setSettingsOpen(false);
       toast({
         title: t('toast.success'),
-        description: t('toast.monthlyIncomeUpdated'),
+        description: t('toast.profileUpdated'),
       });
     } catch (error: any) {
       toast({
@@ -199,6 +209,28 @@ const Dashboard = () => {
                   <DialogTitle>{t('dashboard.settings')}</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="firstName">{t('dashboard.firstName')}</Label>
+                      <Input
+                        id="firstName"
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        placeholder={t('dashboard.firstName')}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="lastName">{t('dashboard.lastName')}</Label>
+                      <Input
+                        id="lastName"
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        placeholder={t('dashboard.lastName')}
+                      />
+                    </div>
+                  </div>
                   <div className="space-y-2">
                     <Label htmlFor="income">{t('dashboard.monthlyIncome')}</Label>
                     <Input
@@ -214,7 +246,7 @@ const Dashboard = () => {
                     <Button variant="outline" onClick={() => setSettingsOpen(false)}>
                       {t('dashboard.close')}
                     </Button>
-                    <Button onClick={updateMonthlyIncome}>
+                    <Button onClick={updateProfile}>
                       {t('dashboard.update')}
                     </Button>
                   </div>

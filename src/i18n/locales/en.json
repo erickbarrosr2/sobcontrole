@@ -32,7 +32,9 @@
     "startAdding": "Start adding your income and expenses to track your budget.",
     "greeting": "Hello, {{name}}!",
     "welcomeBack": "Welcome back to your financial dashboard.",
-    "user": "User"
+    "user": "User",
+    "firstName": "First Name",
+    "lastName": "Last Name"
   },
   "transaction": {
     "description": "Description",
@@ -78,7 +80,8 @@
     "transactionAdded": "Transaction added successfully",
     "transactionUpdated": "Transaction updated successfully",
     "transactionDeleted": "Transaction deleted successfully",
-    "monthlyIncomeUpdated": "Monthly income updated successfully"
+    "monthlyIncomeUpdated": "Monthly income updated successfully",
+    "profileUpdated": "Profile updated successfully"
   },
   "language": {
     "english": "English",

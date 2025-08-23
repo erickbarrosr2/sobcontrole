@@ -32,7 +32,9 @@
     "startAdding": "Comece adicionando suas receitas e despesas para acompanhar seu orçamento.",
     "greeting": "Olá, {{name}}!",
     "welcomeBack": "Bem-vindo de volta ao seu painel financeiro.",
-    "user": "Usuário"
+    "user": "Usuário",
+    "firstName": "Primeiro Nome",
+    "lastName": "Sobrenome"
   },
   "transaction": {
     "description": "Descrição",
@@ -78,7 +80,8 @@
     "transactionAdded": "Transação adicionada com sucesso",
     "transactionUpdated": "Transação atualizada com sucesso",
     "transactionDeleted": "Transação excluída com sucesso",
-    "monthlyIncomeUpdated": "Renda mensal atualizada com sucesso"
+    "monthlyIncomeUpdated": "Renda mensal atualizada com sucesso",
+    "profileUpdated": "Perfil atualizado com sucesso"
   },
   "language": {
     "english": "English",
