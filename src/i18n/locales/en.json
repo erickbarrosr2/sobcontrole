@@ -72,7 +72,8 @@
     "remaining": "Remaining",
     "budgetRule": "Budget Rule",
     "used": "used",
-    "achieved": "achieved"
+    "achieved": "achieved",
+    "currency": "$"
   },
   "toast": {
     "success": "Success",

@@ -18,6 +18,7 @@ export const BudgetOverview = ({
   savingsAmount,
 }: BudgetOverviewProps) => {
   const { t } = useTranslation();
+  const currency = t('budget.currency');
   const balance = monthlyIncome - totalExpenses;
   const isPositive = balance >= 0;
 
@@ -40,7 +41,7 @@ export const BudgetOverview = ({
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-success">
-            ${monthlyIncome.toFixed(2)}
+            {currency}{monthlyIncome.toFixed(2)}
           </div>
         </CardContent>
       </Card>
@@ -53,7 +54,7 @@ export const BudgetOverview = ({
         </CardHeader>
         <CardContent>
           <div className={`text-2xl font-bold ${isPositive ? 'text-success' : 'text-destructive'}`}>
-            {isPositive ? '+' : ''}${balance.toFixed(2)}
+            {isPositive ? '+' : ''}{currency}{balance.toFixed(2)}
           </div>
         </CardContent>
       </Card>
@@ -66,7 +67,7 @@ export const BudgetOverview = ({
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-destructive">
-            -${totalExpenses.toFixed(2)}
+            -{currency}{totalExpenses.toFixed(2)}
           </div>
         </CardContent>
       </Card>
@@ -79,7 +80,7 @@ export const BudgetOverview = ({
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-primary">
-            ${savingsAmount.toFixed(2)}
+            {currency}{savingsAmount.toFixed(2)}
           </div>
         </CardContent>
       </Card>
@@ -94,7 +95,7 @@ export const BudgetOverview = ({
             <div>
               <div className="flex justify-between text-sm mb-2">
                 <span>{t('budget.needs')} (50%)</span>
-                <span>${needsExpenses.toFixed(2)} / ${needsLimit.toFixed(2)}</span>
+                <span>{currency}{needsExpenses.toFixed(2)} / {currency}{needsLimit.toFixed(2)}</span>
               </div>
               <Progress 
                 value={Math.min(needsPercentage, 100)} 
@@ -111,7 +112,7 @@ export const BudgetOverview = ({
             <div>
               <div className="flex justify-between text-sm mb-2">
                 <span>{t('budget.wants')} (20%)</span>
-                <span>${wantsExpenses.toFixed(2)} / ${wantsLimit.toFixed(2)}</span>
+                <span>{currency}{wantsExpenses.toFixed(2)} / {currency}{wantsLimit.toFixed(2)}</span>
               </div>
               <Progress 
                 value={Math.min(wantsPercentage, 100)} 
@@ -128,7 +129,7 @@ export const BudgetOverview = ({
             <div>
               <div className="flex justify-between text-sm mb-2">
                 <span>{t('budget.savings')} (30%)</span>
-                <span>${savingsAmount.toFixed(2)} / ${savingsGoal.toFixed(2)}</span>
+                <span>{currency}{savingsAmount.toFixed(2)} / {currency}{savingsGoal.toFixed(2)}</span>
               </div>
               <Progress 
                 value={Math.min(savingsPercentage, 100)} 

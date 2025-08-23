@@ -72,7 +72,8 @@
     "remaining": "Restante",
     "budgetRule": "Regra Orçamentária",
     "used": "usado",
-    "achieved": "alcançado"
+    "achieved": "alcançado",
+    "currency": "R$"
   },
   "toast": {
     "success": "Sucesso",

@@ -30,6 +30,7 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
   const [editModalOpen, setEditModalOpen] = useState(false);
   const { toast } = useToast();
   const { t } = useTranslation();
+  const currency = t('budget.currency');
 
   const handleDelete = async (id: string) => {
     setDeletingId(id);
@@ -109,7 +110,7 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
                 <span className={`font-semibold ${
                   transaction.type === "income" ? "text-success" : "text-destructive"
                 }`}>
-                  {transaction.type === "income" ? "+" : "-"}${transaction.amount.toFixed(2)}
+                  {transaction.type === "income" ? "+" : "-"}{currency}{transaction.amount.toFixed(2)}
                 </span>
                 
                 <div className="flex gap-1">
