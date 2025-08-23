@@ -26,6 +26,8 @@ interface Transaction {
 
 interface Profile {
   monthly_income: number;
+  first_name?: string;
+  last_name?: string;
 }
 
 const Dashboard = () => {
@@ -123,6 +125,19 @@ const Dashboard = () => {
     navigate("/login");
   };
 
+  // Get user display name
+  const getUserDisplayName = () => {
+    if (profile?.first_name && profile?.last_name) {
+      return `${profile.first_name} ${profile.last_name}`;
+    }
+    if (profile?.first_name) {
+      return profile.first_name;
+    }
+    if (user?.email) {
+      return user.email.split('@')[0];
+    }
+    return t('dashboard.user');
+  };
   // Calculate budget data
   const currentMonthTransactions = transactions.filter(t => {
     const transactionDate = new Date(t.created_at);
@@ -215,6 +230,13 @@ const Dashboard = () => {
       </header>
 
       <main className="container mx-auto px-4 py-6">
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-foreground mb-2">
+            {t('dashboard.greeting', { name: getUserDisplayName() })}
+          </h1>
+          <p className="text-muted-foreground">{t('dashboard.welcomeBack')}</p>
+        </div>
+
         <BudgetOverview
           monthlyIncome={profile.monthly_income}
           totalExpenses={totalExpenses}

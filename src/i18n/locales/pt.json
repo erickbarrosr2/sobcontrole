@@ -29,7 +29,10 @@
     "addTransaction": "Adicionar Transação",
     "recentTransactions": "Transações Recentes",
     "noTransactions": "Nenhuma transação ainda",
-    "startAdding": "Comece adicionando suas receitas e despesas para acompanhar seu orçamento."
+    "startAdding": "Comece adicionando suas receitas e despesas para acompanhar seu orçamento.",
+    "greeting": "Olá, {{name}}!",
+    "welcomeBack": "Bem-vindo de volta ao seu painel financeiro.",
+    "user": "Usuário"
   },
   "transaction": {
     "description": "Descrição",

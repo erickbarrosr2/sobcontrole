@@ -29,7 +29,10 @@
     "addTransaction": "Add Transaction",
     "recentTransactions": "Recent Transactions",
     "noTransactions": "No transactions yet",
-    "startAdding": "Start adding your income and expenses to track your budget."
+    "startAdding": "Start adding your income and expenses to track your budget.",
+    "greeting": "Hello, {{name}}!",
+    "welcomeBack": "Welcome back to your financial dashboard.",
+    "user": "User"
   },
   "transaction": {
     "description": "Description",
