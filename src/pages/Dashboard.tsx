@@ -192,18 +192,20 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">{t('app.title')}</h1>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <LanguageToggle />
-            <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
-              <DialogTrigger asChild>
-                <Button variant="outline" size="sm">
-                  <Settings className="mr-2 h-4 w-4" />
-                  {t('dashboard.settings')}
-                </Button>
-              </DialogTrigger>
+        <div className="container mx-auto px-4 py-3 sm:py-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <h1 className="text-xl sm:text-2xl font-bold">{t('app.title')}</h1>
+            <div className="flex items-center gap-2 flex-wrap">
+              <ThemeToggle />
+              <LanguageToggle />
+              <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="sm" className="text-xs sm:text-sm">
+                    <Settings className="mr-1 sm:mr-2 h-4 w-4" />
+                    <span className="hidden sm:inline">{t('dashboard.settings')}</span>
+                    <span className="sm:hidden">{t('dashboard.settings').slice(0, 8)}</span>
+                  </Button>
+                </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>{t('dashboard.settings')}</DialogTitle>
@@ -253,20 +255,22 @@ const Dashboard = () => {
                 </div>
               </DialogContent>
             </Dialog>
-            <Button variant="outline" size="sm" onClick={handleSignOut}>
-              <LogOut className="mr-2 h-4 w-4" />
-              {t('dashboard.signOut')}
-            </Button>
+              <Button variant="outline" size="sm" onClick={handleSignOut} className="text-xs sm:text-sm">
+                <LogOut className="mr-1 sm:mr-2 h-4 w-4" />
+                <span className="hidden sm:inline">{t('dashboard.signOut')}</span>
+                <span className="sm:hidden">Sair</span>
+              </Button>
+            </div>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-foreground mb-2">
+      <main className="container mx-auto px-4 py-4 sm:py-6">
+        <div className="mb-4 sm:mb-6">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-1 sm:mb-2 leading-tight">
             {t('dashboard.greeting', { name: getUserDisplayName() })}
           </h1>
-          <p className="text-muted-foreground">{t('dashboard.welcomeBack')}</p>
+          <p className="text-sm sm:text-base text-muted-foreground">{t('dashboard.welcomeBack')}</p>
         </div>
 
         <BudgetOverview

@@ -32,70 +32,72 @@ export const BudgetOverview = ({
   const savingsPercentage = (savingsAmount / savingsGoal) * 100;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
       <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardHeader className="pb-2 px-3 sm:px-6 pt-3 sm:pt-6">
+          <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground">
             {t('budget.income')}
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold text-success">
+        <CardContent className="px-3 sm:px-6 pb-3 sm:pb-6">
+          <div className="text-sm sm:text-xl lg:text-2xl font-bold text-success break-all">
             {currency}{monthlyIncome.toFixed(2)}
           </div>
         </CardContent>
       </Card>
 
       <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardHeader className="pb-2 px-3 sm:px-6 pt-3 sm:pt-6">
+          <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground">
             {t('budget.remaining')}
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className={`text-2xl font-bold ${isPositive ? 'text-success' : 'text-destructive'}`}>
+        <CardContent className="px-3 sm:px-6 pb-3 sm:pb-6">
+          <div className={`text-sm sm:text-xl lg:text-2xl font-bold break-all ${isPositive ? 'text-success' : 'text-destructive'}`}>
             {isPositive ? '+' : ''}{currency}{balance.toFixed(2)}
           </div>
         </CardContent>
       </Card>
 
       <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardHeader className="pb-2 px-3 sm:px-6 pt-3 sm:pt-6">
+          <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground">
             {t('budget.expenses')}
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold text-destructive">
+        <CardContent className="px-3 sm:px-6 pb-3 sm:pb-6">
+          <div className="text-sm sm:text-xl lg:text-2xl font-bold text-destructive break-all">
             -{currency}{totalExpenses.toFixed(2)}
           </div>
         </CardContent>
       </Card>
 
       <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardHeader className="pb-2 px-3 sm:px-6 pt-3 sm:pt-6">
+          <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground">
             {t('budget.savings')}
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold text-primary">
+        <CardContent className="px-3 sm:px-6 pb-3 sm:pb-6">
+          <div className="text-sm sm:text-xl lg:text-2xl font-bold text-primary break-all">
             {currency}{savingsAmount.toFixed(2)}
           </div>
         </CardContent>
       </Card>
 
       {/* 50/30/20 Budget Rule */}
-      <Card className="md:col-span-2 lg:col-span-4">
-        <CardHeader>
-          <CardTitle className="text-lg">50/20/30 {t('budget.budgetRule')}</CardTitle>
+      <Card className="col-span-2 lg:col-span-4">
+        <CardHeader className="px-3 sm:px-6 pt-3 sm:pt-6 pb-3 sm:pb-4">
+          <CardTitle className="text-sm sm:text-base lg:text-lg">50/20/30 {t('budget.budgetRule')}</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <CardContent className="space-y-3 sm:space-y-4 px-3 sm:px-6 pb-3 sm:pb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span>{t('budget.needs')} (50%)</span>
-                <span>{currency}{needsExpenses.toFixed(2)} / {currency}{needsLimit.toFixed(2)}</span>
+              <div className="flex flex-col sm:flex-row sm:justify-between text-xs sm:text-sm mb-2 gap-1">
+                <span className="font-medium">{t('budget.needs')} (50%)</span>
+                <span className="text-muted-foreground break-all">
+                  {currency}{needsExpenses.toFixed(2)} / {currency}{needsLimit.toFixed(2)}
+                </span>
               </div>
               <Progress 
                 value={Math.min(needsPercentage, 100)} 
@@ -110,9 +112,11 @@ export const BudgetOverview = ({
             </div>
 
             <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span>{t('budget.wants')} (20%)</span>
-                <span>{currency}{wantsExpenses.toFixed(2)} / {currency}{wantsLimit.toFixed(2)}</span>
+              <div className="flex flex-col sm:flex-row sm:justify-between text-xs sm:text-sm mb-2 gap-1">
+                <span className="font-medium">{t('budget.wants')} (20%)</span>
+                <span className="text-muted-foreground break-all">
+                  {currency}{wantsExpenses.toFixed(2)} / {currency}{wantsLimit.toFixed(2)}
+                </span>
               </div>
               <Progress 
                 value={Math.min(wantsPercentage, 100)} 
@@ -127,9 +131,11 @@ export const BudgetOverview = ({
             </div>
 
             <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span>{t('budget.savings')} (30%)</span>
-                <span>{currency}{savingsAmount.toFixed(2)} / {currency}{savingsGoal.toFixed(2)}</span>
+              <div className="flex flex-col sm:flex-row sm:justify-between text-xs sm:text-sm mb-2 gap-1">
+                <span className="font-medium">{t('budget.savings')} (30%)</span>
+                <span className="text-muted-foreground break-all">
+                  {currency}{savingsAmount.toFixed(2)} / {currency}{savingsGoal.toFixed(2)}
+                </span>
               </div>
               <Progress 
                 value={Math.min(savingsPercentage, 100)} 

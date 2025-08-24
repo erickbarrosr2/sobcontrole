@@ -81,10 +81,10 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
           {transactions.map((transaction) => (
             <div
               key={transaction.id}
-              className="flex items-center justify-between p-3 rounded-lg border bg-card"
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 rounded-lg border bg-card gap-3 sm:gap-4"
             >
-              <div className="flex items-center gap-3">
-                <div className={`p-2 rounded-full ${
+              <div className="flex items-center gap-3 min-w-0 flex-1">
+                <div className={`p-2 rounded-full shrink-0 ${
                   transaction.type === "income" 
                     ? "bg-income-bg text-income-text" 
                     : "bg-expense-bg text-expense-text"
@@ -95,19 +95,19 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
                     <TrendingDown className="h-4 w-4" />
                   )}
                 </div>
-                <div>
-                  <p className="font-medium">{transaction.description}</p>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="min-w-0 flex-1">
+                  <p className="font-medium text-sm sm:text-base truncate">{transaction.description}</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
                     <span>{format(new Date(transaction.created_at), "MMM dd, yyyy")}</span>
-                    <Badge variant="outline" className="text-xs">
+                    <Badge variant="outline" className="text-xs w-fit">
                       {t(`transaction.categories.${transaction.category}`)}
                     </Badge>
                   </div>
                 </div>
               </div>
               
-              <div className="flex items-center gap-2">
-                <span className={`font-semibold ${
+              <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3">
+                <span className={`font-semibold text-sm sm:text-base break-all ${
                   transaction.type === "income" ? "text-success" : "text-destructive"
                 }`}>
                   {transaction.type === "income" ? "+" : "-"}{currency}{transaction.amount.toFixed(2)}
@@ -117,13 +117,13 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
                   <Button 
                     size="sm" 
                     variant="ghost" 
-                    className="h-8 w-8 p-0"
+                    className="h-10 w-10 sm:h-8 sm:w-8 p-0"
                     onClick={() => {
                       setEditingTransaction(transaction);
                       setEditModalOpen(true);
                     }}
                   >
-                    <Edit2 className="h-3 w-3" />
+                    <Edit2 className="h-4 w-4 sm:h-3 sm:w-3" />
                   </Button>
                   
                   <AlertDialog>
@@ -131,10 +131,10 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
                       <Button 
                         size="sm" 
                         variant="ghost" 
-                        className="h-8 w-8 p-0 text-destructive hover:text-destructive"
+                        className="h-10 w-10 sm:h-8 sm:w-8 p-0 text-destructive hover:text-destructive"
                         disabled={deletingId === transaction.id}
                       >
-                        <Trash2 className="h-3 w-3" />
+                        <Trash2 className="h-4 w-4 sm:h-3 sm:w-3" />
                       </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
