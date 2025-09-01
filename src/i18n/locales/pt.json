@@ -56,6 +56,13 @@
     "delete": "Excluir",
     "deleteConfirm": "Tem certeza de que deseja excluir esta transação?",
     "deleteDescription": "Esta ação não pode ser desfeita.",
+    "selectMultiple": "Selecionar Várias",
+    "cancelSelection": "Cancelar Seleção",
+    "selectAll": "Selecionar Todas",
+    "deleteSelected": "Excluir Selecionadas ({{count}})",
+    "bulkDelete": "Excluir Transações",
+    "bulkDeleteConfirm": "Tem certeza de que deseja excluir {{count}} transações selecionadas?",
+    "deleting": "Excluindo...",
     "categories": {
       "food": "Alimentação",
       "transport": "Transporte",
@@ -89,6 +96,7 @@
     "transactionAdded": "Transação adicionada com sucesso",
     "transactionUpdated": "Transação atualizada com sucesso",
     "transactionDeleted": "Transação excluída com sucesso",
+    "bulkTransactionsDeleted": "{{count}} transações excluídas com sucesso",
     "monthlyIncomeUpdated": "Renda mensal atualizada com sucesso",
     "profileUpdated": "Perfil atualizado com sucesso"
   },

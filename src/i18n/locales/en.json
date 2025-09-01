@@ -56,6 +56,13 @@
     "delete": "Delete",
     "deleteConfirm": "Are you sure you want to delete this transaction?",
     "deleteDescription": "This action cannot be undone.",
+    "selectMultiple": "Select Multiple",
+    "cancelSelection": "Cancel Selection",
+    "selectAll": "Select All",
+    "deleteSelected": "Delete Selected ({{count}})",
+    "bulkDelete": "Delete Transactions",
+    "bulkDeleteConfirm": "Are you sure you want to delete {{count}} selected transactions?",
+    "deleting": "Deleting...",
     "categories": {
       "food": "Food",
       "transport": "Transport", 
@@ -89,6 +96,7 @@
     "transactionAdded": "Transaction added successfully",
     "transactionUpdated": "Transaction updated successfully",
     "transactionDeleted": "Transaction deleted successfully",
+    "bulkTransactionsDeleted": "{{count}} transactions deleted successfully",
     "monthlyIncomeUpdated": "Monthly income updated successfully",
     "profileUpdated": "Profile updated successfully"
   },
