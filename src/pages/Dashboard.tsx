@@ -8,6 +8,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { BudgetOverview } from "@/components/dashboard/BudgetOverview";
 import { TransactionModal } from "@/components/dashboard/TransactionModal";
 import { TransactionsList } from "@/components/dashboard/TransactionsList";
+import { MonthNavigator } from "@/components/dashboard/MonthNavigator";
+import { MonthlyIncomeModal } from "@/components/dashboard/MonthlyIncomeModal";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { supabase } from "@/integrations/supabase/client";
@@ -39,6 +41,9 @@ const Dashboard = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [currentMonthIncome, setCurrentMonthIncome] = useState(0);
   const { toast } = useToast();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -46,7 +51,7 @@ const Dashboard = () => {
   useEffect(() => {
     checkUser();
     fetchData();
-  }, []);
+  }, [selectedMonth, selectedYear]);
 
   const checkUser = async () => {
     const { data: { user } } = await supabase.auth.getUser();
@@ -77,11 +82,27 @@ const Dashboard = () => {
         setLastName(profileData.last_name || "");
       }
 
-      // Fetch transactions
+      // Fetch monthly income for selected month
+      const { data: monthlyIncomeData } = await supabase
+        .from("monthly_incomes")
+        .select("amount")
+        .eq("user_id", user.id)
+        .eq("month", selectedMonth)
+        .eq("year", selectedYear)
+        .maybeSingle();
+
+      setCurrentMonthIncome(monthlyIncomeData?.amount || 0);
+
+      // Fetch transactions for selected month
+      const startDate = new Date(selectedYear, selectedMonth - 1, 1);
+      const endDate = new Date(selectedYear, selectedMonth, 0, 23, 59, 59);
+
       const { data: transactionsData } = await supabase
         .from("transactions")
         .select("*")
         .eq("user_id", user.id)
+        .gte("created_at", startDate.toISOString())
+        .lte("created_at", endDate.toISOString())
         .order("created_at", { ascending: false });
 
       if (transactionsData) {
@@ -148,19 +169,17 @@ const Dashboard = () => {
     }
     return t('dashboard.user');
   };
-  // Calculate budget data
-  const currentMonthTransactions = transactions.filter(t => {
-    const transactionDate = new Date(t.created_at);
-    const currentDate = new Date();
-    return transactionDate.getMonth() === currentDate.getMonth() && 
-           transactionDate.getFullYear() === currentDate.getFullYear();
-  });
+  const handleMonthChange = (month: number, year: number) => {
+    setSelectedMonth(month);
+    setSelectedYear(year);
+  };
 
-  const totalExpenses = currentMonthTransactions
+  // Calculate budget data
+  const totalExpenses = transactions
     .filter(t => t.type === "expense")
     .reduce((sum, t) => sum + t.amount, 0);
 
-  const totalIncome = currentMonthTransactions
+  const totalIncome = transactions
     .filter(t => t.type === "income")
     .reduce((sum, t) => sum + t.amount, 0);
 
@@ -168,11 +187,11 @@ const Dashboard = () => {
   const needsCategories = ["housing", "food", "utilities", "healthcare", "transportation"];
   const savingsCategories = ["savings"];
   
-  const needsExpenses = currentMonthTransactions
+  const needsExpenses = transactions
     .filter(t => t.type === "expense" && needsCategories.includes(t.category))
     .reduce((sum, t) => sum + t.amount, 0);
 
-  const savingsExpenses = currentMonthTransactions
+  const savingsExpenses = transactions
     .filter(t => t.type === "expense" && savingsCategories.includes(t.category))
     .reduce((sum, t) => sum + t.amount, 0);
 
@@ -273,8 +292,14 @@ const Dashboard = () => {
           <p className="text-sm sm:text-base text-muted-foreground">{t('dashboard.welcomeBack')}</p>
         </div>
 
+        <MonthNavigator
+          currentMonth={selectedMonth}
+          currentYear={selectedYear}
+          onMonthChange={handleMonthChange}
+        />
+
         <BudgetOverview
-          monthlyIncome={profile.monthly_income}
+          monthlyIncome={currentMonthIncome}
           totalExpenses={totalExpenses}
           needsExpenses={needsExpenses}
           wantsExpenses={wantsExpenses}
@@ -285,7 +310,15 @@ const Dashboard = () => {
           <div>
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">{t('dashboard.recentTransactions')}</h2>
-              <TransactionModal onTransactionAdded={fetchData} />
+              <div className="flex gap-2">
+                <MonthlyIncomeModal
+                  month={selectedMonth}
+                  year={selectedYear}
+                  currentIncome={currentMonthIncome}
+                  onIncomeUpdated={fetchData}
+                />
+                <TransactionModal onTransactionAdded={fetchData} />
+              </div>
             </div>
             <TransactionsList 
               transactions={transactions} 

@@ -34,7 +34,13 @@
     "welcomeBack": "Bem-vindo de volta ao seu painel financeiro.",
     "user": "Usuário",
     "firstName": "Primeiro Nome",
-    "lastName": "Sobrenome"
+    "lastName": "Sobrenome",
+    "currentMonth": "Mês Atual",
+    "previousMonth": "Mês Anterior",
+    "nextMonth": "Próximo Mês",
+    "setMonthlyIncome": "Definir Receita do Mês",
+    "monthlyIncomeFor": "Receita para {{month}}",
+    "noIncomeSet": "Receita não definida para este mês"
   },
   "transaction": {
     "description": "Descrição",

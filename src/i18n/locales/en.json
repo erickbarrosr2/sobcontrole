@@ -34,7 +34,13 @@
     "welcomeBack": "Welcome back to your financial dashboard.",
     "user": "User",
     "firstName": "First Name",
-    "lastName": "Last Name"
+    "lastName": "Last Name",
+    "currentMonth": "Current Month",
+    "previousMonth": "Previous Month",
+    "nextMonth": "Next Month",
+    "setMonthlyIncome": "Set Monthly Income",
+    "monthlyIncomeFor": "Income for {{month}}",
+    "noIncomeSet": "No income set for this month"
   },
   "transaction": {
     "description": "Description",
