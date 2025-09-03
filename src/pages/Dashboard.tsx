@@ -317,7 +317,11 @@ const Dashboard = () => {
                   currentIncome={currentMonthIncome}
                   onIncomeUpdated={fetchData}
                 />
-                <TransactionModal onTransactionAdded={fetchData} />
+                <TransactionModal 
+                  onTransactionAdded={fetchData}
+                  currentMonth={selectedMonth}
+                  currentYear={selectedYear}
+                />
               </div>
             </div>
             <TransactionsList 

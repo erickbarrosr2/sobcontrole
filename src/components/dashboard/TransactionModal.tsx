@@ -12,6 +12,8 @@ import { useTranslation } from "react-i18next";
 
 interface TransactionModalProps {
   onTransactionAdded: () => void;
+  currentMonth: number;
+  currentYear: number;
 }
 
 const CATEGORIES = [
@@ -27,7 +29,7 @@ const CATEGORIES = [
   "other"
 ];
 
-export const TransactionModal = ({ onTransactionAdded }: TransactionModalProps) => {
+export const TransactionModal = ({ onTransactionAdded, currentMonth, currentYear }: TransactionModalProps) => {
   const [open, setOpen] = useState(false);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
@@ -45,6 +47,9 @@ export const TransactionModal = ({ onTransactionAdded }: TransactionModalProps) 
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Not authenticated");
 
+      // Create date for the selected month/year (first day of the month)
+      const transactionDate = new Date(currentYear, currentMonth - 1, 1);
+
       const { error } = await supabase
         .from("transactions")
         .insert({
@@ -53,6 +58,7 @@ export const TransactionModal = ({ onTransactionAdded }: TransactionModalProps) 
           amount: parseFloat(amount),
           type,
           category,
+          created_at: transactionDate.toISOString(),
         });
 
       if (error) throw error;
