@@ -33,8 +33,17 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
   const [isSelectionMode, setIsSelectionMode] = useState(false);
   const [bulkDeleting, setBulkDeleting] = useState(false);
   const { toast } = useToast();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currency = t('budget.currency');
+  
+  // Format date based on current language
+  const formatTransactionDate = (dateString: string) => {
+    const date = new Date(dateString);
+    if (i18n.language === 'pt') {
+      return format(date, "dd/MM/yyyy 'às' HH:mm");
+    }
+    return format(date, "MM/dd/yyyy 'at' HH:mm");
+  };
 
   const handleDelete = async (id: string) => {
     setDeletingId(id);
@@ -234,7 +243,7 @@ export const TransactionsList = ({ transactions, onTransactionUpdated }: Transac
                 <div className="min-w-0 flex-1">
                   <p className="font-medium text-sm sm:text-base truncate">{transaction.description}</p>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
-                    <span>{format(new Date(transaction.created_at), "MMM dd, yyyy")}</span>
+                    <span>{formatTransactionDate(transaction.created_at)}</span>
                     <Badge variant="outline" className="text-xs w-fit">
                       {t(`transaction.categories.${transaction.category}`)}
                     </Badge>
