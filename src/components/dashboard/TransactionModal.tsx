@@ -47,9 +47,6 @@ export const TransactionModal = ({ onTransactionAdded, currentMonth, currentYear
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Not authenticated");
 
-      // Create date for the selected month/year (first day of the month)
-      const transactionDate = new Date(currentYear, currentMonth - 1, 1);
-
       const { error } = await supabase
         .from("transactions")
         .insert({
@@ -58,7 +55,6 @@ export const TransactionModal = ({ onTransactionAdded, currentMonth, currentYear
           amount: parseFloat(amount),
           type,
           category,
-          created_at: transactionDate.toISOString(),
         });
 
       if (error) throw error;
